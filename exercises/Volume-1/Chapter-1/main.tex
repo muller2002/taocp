@@ -177,7 +177,7 @@ Easily we can see, that: $f(n) = n^2 - \sum_{i=0}^{n-1}(-1)^i ((n-1)-i)^2 = n^2 
 
 \todo{solution (Page 19)}
 
-\exercise{8}{25}{\\(a) Prove the following theorem of Nicomachus (A.D. c. 100) by induction: $1^3 = 1, 2^3 = 3+5, 3^3 = 7+9+11, 4^3 = 13+15+17+19,$ etc. \\
+\exercise{8}{25}{(a) Prove the following theorem of Nicomachus (A.D. c. 100) by induction: $1^3 = 1, 2^3 = 3+5, 3^3 = 7+9+11, 4^3 = 13+15+17+19,$ etc. \\
     (b) Use this result to prove the remarkable formula $1^3+2^3+\ldots + n^3 = (1+2+\ldots + n)^2$}
 \label{ex:section1-2:8}
 (a): \\
@@ -193,4 +193,73 @@ $\sum_{i = 1}^1 i^3 = 1$ and $\left(\sum_{i = 1}^1 i\right)^2 = 1$.
 It is obvious, that $1=1$ is a true statement.
 
 
-\textbf{Induction step}:
+\textbf{Induction step}: Let $n$ be an arbitrary but fixed positive integer and for all $j \leq n$ it is true that $\sum_{i = 1}^j i^3 = \left(\sum_{i=1}^{j} i \right)^2$
+
+\begin{align*}
+    \sum_{i = 1}^{n+1} i^3                 & \stackrel{!}{=} \left(\sum_{i=1}^{n+1} i \right)^2                                                             \\
+    \sum_{i = 1}^{n} i^3 + (n+1)^3         & = \left(\sum_{i=1}^{n} i  + (n+1)\right)^2                                                                     \\
+    \sum_{i = 1}^{n} i^3 + (n^3+3n^2+3n+1) & = \left(\sum_{i=1}^{n} i\right)^2 + 2\cdot \left(\sum_{i=1}^{n} i\right) \cdot(n+1)  + (n+1)^2 & | - \text{IV} \\
+    (n^3+3n^2+3n+1)                        & =  2\cdot \left(\sum_{i=1}^{n} i\right) \cdot(n+1)  + (n+1)^2                                                  \\
+    (n^3+3n^2+3n+1)                        & =  2\cdot \left(\frac{n(n+1)}{2}\right) \cdot(n+1)  + (n+1)^2                                                  \\
+    (n^3+3n^2+3n+1)                        & =  (n^3+2n^2+n)  + (n^2+2n+1)                                                                                  \\
+    (n^3+3n^2+3n+1)                        & =  n^3+3n^2+3n+1 \checkmark                                                                                    \\
+\end{align*}
+
+\exercise{9}{20}{Prove by induction that if $0<a<1$,then $(1-a)^n \geq 1-na$ for all integers $n$}
+\label{ex:section1-2:9}
+
+\textbf{Induction Base}: $n = 0$ \\
+$(1-a)^0 = 1$, $1-0 \cdot 0 = 1$, $1=1 \checkmark$ \\
+
+\textbf{Induction Step ($n \rightarrow n+1$):} Let $n$ be an arbitrary but fixed positive integer and for all $0 \leq j \leq n$ it is true that $(1-a)^j \geq 1-ja$ \\ \\
+
+We know: $(1-a)^n \geq 1-na$ \\
+So after the induction Step we get: $(1-a)^{n+1} \geq 1-(n+1)a$ \\
+\begin{align*}
+    (1-a)^{n+1}           & \geq 1-(n+1)a                 \\
+    (1-a)^{n} \cdot (1-a) & \geq 1-na-a                   \\
+    (1-a)^{n} - (1-a)     & \geq 1-na-a   & | - \text{IV} \\
+    a+1                   & \geq -a                       \\
+\end{align*}
+The last Statement is tue ($a$ is positive).
+
+\textbf{Induction Step ($n \rightarrow n-1$):} Let $n$ be an arbitrary but fixed positive integer and for all $n \leq j \leq 0$ it is true that $(1-a)^j \geq 1-ja$ \\ \\
+
+\begin{align*}
+    a+1                   & \geq -a       & | + \text{IV} \\
+    (1-a)^{n} - (1-a)     & \geq 1-na-a                   \\
+    (1-a)^{n} \cdot (1-a) & \geq 1-na-a                   \\
+    (1-a)^{n+1}           & \geq 1-(n+1)a                 \\
+\end{align*}
+
+
+So $(1-a)^n \geq 1-na$ is true for all integers $n$ if $a \in (0,1)$.
+
+\exercise{10}{M22}{Prove by induction that if $n \geq 10$, then $2^n > n^3$}
+\textbf{Induction Base ($n=10$):} \\
+$2^10 = 1024$, $10^3 = 1000$, $1024 > 1000$ \\ \\
+
+\textbf{Induction Step ($n \rightarrow n+1$):} Let $n$ be an arbitrary but fixed positive integer and for all $n \geq j \geq 10$ it is true that $2^j > j^3$ \\ \\
+\begin{align*}
+    2^{n+1}     & > (n+1)^3                   \\
+    2^n \cdot 2 & > n^3+ 3n^2 + 3n +1 & |- IV \\
+    2^n         & > 3n^2 +3n + 1
+\end{align*}
+We already know, that: $2^n > n^3$ and $n^3 > 3n^2 +3n+1$, so it is true.
+
+\exercise{11}{M30}{Find and prove a simple formula for the sum
+    $$\frac{1^3}{1^4+4} - \frac{3^3}{3^4+4} + \frac{5^3}{5^4+4} - \ldots + \frac{(-1)^n(2n+1)^3}{(2n+1)^4+4}$$}
+\todo{Solution (Page 19)}
+
+\exercise{12}{M25}{Show how Algorithm E can be generalized as stated in the text so it will accept input values of the form $u+v\sqrt{2}$, where $u$ and $v$ are integers, and the computations can still be done in an elementary way (that is, without using the infinite decimal expansion of $\sqrt{2}$). Prove that the computation woll not terminate, however, if $m = 1$ and $n = \sqrt{2}$}
+
+\todo{Solution (Page 19)}
+
+\exercise{13}{M23}{Extend Algorithm E by adding a new Variable $T$ and adding the operation ``$T \leftarrow T+1$'' at the beginning of eacht step. (Thus, $T$ is like a clock, counting the number of steps executed.) Assume that $T$ is initially zero, so that assertion $A1$ in Fig. 4 becomes ``$m > 0, n > 0, T = 0.$'' The additional condition ``$T=1$'' should similarly be appended to $A2$. Show how to append additional conditions to the assertions in such a way that any one of $A1, A2, \ldots, A6$ implies $T\leq 3n$, and such that the inductive proof can still be carried out. (Hence the computations must terminate in at most $3n$ steps.)  }
+
+\todo{Solution (Page 20)}
+
+\exercise{14}{50}{(R.W. Floyd.) Prepare a computer program that accepts, as input, programs in some programming language together with optional assertions, and that attempts to fill in the remaining assertions necessary to make a proof that the computer program is valid. (For example, strive to get a program that is able to prove the validity of Algorithm E, given only assertions $A1, A4,$ and $A6$. See tge oaoers by R.W. Floyd and J. C. King in the IFIP Congress proceedings, 1971, for further discussion.) }
+
+\exercise{16}{HM28}{See Page 20}
+
