@@ -1,4 +1,27 @@
+%\newcommand{\exercise}[3]{%
+%    \vspace*{2em}
+%    \paragraph*{Exercise Number #1}\hspace*{-0.3em}\textit{[#2]}: #3\\ \\ \noindent
+%}
+
+% Layout Usecase Box
+\mdfsetup{nobreak=true}
 \newcommand{\exercise}[3]{%
-    \vspace*{2em}
-    \paragraph*{Exercise Number #1}\hspace*{-0.3em}\textit{[#2]}: #3\\ \\ \noindent
+    \mdfsetup{%
+        frametitle={%
+                \tikz[baseline=(current bounding box.east),outer sep=0pt]
+                \node[anchor=east,rectangle,fill=NavyBlue!70]
+                {\textcolor{Black}{Exercise Number #1 \textit{[#2]}}};}%
+    }%
+
+    % Both conditions
+    \mdfsetup{%
+        innertopmargin=10pt,linecolor=NavyBlue!70,%
+        linewidth=2pt,topline=true,%
+        frametitleaboveskip=\dimexpr-\ht\strutbox\relax%
+    }
+    \vspace*{1em}
+    \begin{mdframed}[]\relax%
+        #3
+    \end{mdframed}
+    \vspace*{0.5em}
 }
