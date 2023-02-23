@@ -20,10 +20,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: xu-cheng/texlive-action/full@v1
-      - uses: actions/upload-artifact@v2
         with:
           run: |
             cd exercises
             latexmk -pdf main.tex -o exercises.pdf
+      - uses: actions/upload-artifact@v2
+        with:
           name: exercises
           path: exercises/exercises.pdf
+          
