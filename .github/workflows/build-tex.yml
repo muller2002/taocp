@@ -23,9 +23,10 @@ jobs:
         with:
           run: |
             cd exercises
-            latexmk -pdf main.tex -o exercises.pdf
+            latexmk -pdf main.tex
+            mv main.pdf exercises.pdf
       - uses: actions/upload-artifact@v2
         with:
           name: exercises
           path: exercises/exercises.pdf
-          
+
